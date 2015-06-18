@@ -1,5 +1,9 @@
 module System where
 
-type alias Model = {}
+import Http exposing (..)
+
+type alias Model =
+  {newsIds : Response (List Int)}
 
 type Action = NoOp
+            | NewsIds (Response (List Int))

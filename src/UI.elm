@@ -11,7 +11,12 @@ rootView uiChannel model =
   div [class "container"]
       [div [class "row"]
            [div [class "col-xs-12"]
-                [body]]]
+                [body model]]]
 
-body : Html
-body = h1 [] [text "Hello world"]
+body : Model -> Html
+body model =
+  div []
+      [h1 []
+          [text "News Ids"]
+      ,div []
+           [code [] [text <| toString model.newsIds]]]
