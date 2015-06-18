@@ -2,17 +2,15 @@ module Main where
 
 import Debug
 import UI exposing (..)
-import System exposing (..)
+import Schema exposing (..)
+import Markov exposing (..)
 import Html exposing (..)
 import Http exposing (..)
 import Signal exposing (..)
 import Json.Decode as Json
 
-decodeFeed : String -> Result String (List NewsItem)
-decodeFeed = Json.decodeString decodeNewsItems
-
 newsStories : Signal (Response (List NewsItem))
-newsStories = Signal.map (Http.mapResult decodeFeed)
+newsStories = Signal.map (Http.mapResult <| Json.decodeString decodeNewsItems)
                          (Http.sendGet <| constant "http://hn.algolia.com/api/v1/search_by_date?tags=story&hitsPerPage=200")
 
 graphFromNews : Response (List NewsItem) -> Maybe Graph
@@ -26,7 +24,7 @@ step : Action -> Model -> Model
 step action model =
   case action of
     NoOp -> model
-    Reset -> {model | phrase <- ["START"]}
+    Reset -> {model | phrase <- [startToken]}
     LoadNews response -> {model | graph <- graphFromNews response
                                 , newsItems <- response}
     ChooseToken s -> let currentPhrase = model.phrase
@@ -36,7 +34,7 @@ initialModel : Model
 initialModel =
   {newsItems = NotAsked
   ,graph = Nothing
-  ,phrase = ["START"]}
+  ,phrase = [startToken]}
 
 model : Signal Model
 model = foldp step
