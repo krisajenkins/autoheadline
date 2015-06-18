@@ -1,0 +1,135 @@
+/* @flow weak */
+
+window.addEventListener(
+    'load',
+    function () {
+        console.log("Starting.", {google: google.maps, elm: Elm.Main});
+        var app = Elm.fullscreen(
+            Elm.Main,
+            {
+                locationHash : document.location.hash,
+                mapSettingsSignal: null
+            }
+        );
+
+        var mapFns = (function() {
+            var map = null;
+            var livePoints = {};
+
+            var pushMapSettings = function() {
+                if (map) {
+                    var bounds = map.getBounds();
+                    var zoom = map.getZoom();
+                    var newSettings = {
+                        bounds: {
+                            southWest: {
+                                latitude: bounds.getSouthWest().lat(),
+                                longitude: bounds.getSouthWest().lng()
+                            },
+                            northEast: {
+                                latitude: bounds.getNorthEast().lat(),
+                                longitude: bounds.getNorthEast().lng()
+                            }
+                        },
+                        zoom: zoom
+                    };
+                    app.ports.mapSettingsSignal.send(newSettings);
+                }
+            };
+
+<<<<<<< HEAD
+    var showMap = function() {
+        var canvas = document.getElementById('map-canvas');
+        if (map === null) {
+            if (canvas) {
+                console.warn("Creating a new map.");
+                var mapOptions = {
+                    zoom: 17,
+                    minZoom: 16,
+                    streetViewControl: true,
+                    center: new google.maps.LatLng(52.24605893524075, -0.8117703142129358)
+                };
+                map = new google.maps.Map(canvas, mapOptions);
+                google.maps.event.addListener(map, 'idle', pushMapSettings);
+            }
+        } else {
+            if (! canvas) {
+                map = null;
+=======
+            var showMap = function() {
+                var canvas = document.getElementById('map-canvas');
+                console.log("Showmap", canvas);
+                if (map === null) {
+                    if (canvas) {
+                        console.warn("Creating a new map.");
+                        var mapOptions = {
+                            zoom: 17,
+                            minZoom: 16,
+                            streetViewControl: true,
+                            center: new google.maps.LatLng(52.24605893524075, -0.8117703142129358)
+                        };
+                        map = new google.maps.Map(canvas, mapOptions);
+                        google.maps.event.addListener(map, 'idle', pushMapSettings);
+                    }
+                } else {
+                    if (! canvas) {
+                        map = null;
+                    };
+                }
+>>>>>>> 2edd60e... Improved startup sequence & map load timings.
+            };
+
+            var updatePoints = function (delta) {
+                var i, id, livePoint, item, position, marker;
+                for (i = 0; i < delta.leaving.length; i++) {
+                    item = delta.leaving[i];
+                    id = item.voa.id;
+                    marker = livePoints[id];
+
+                    // TODO This shouldn't be necessary. It only is because our server-sent data contains a row per floor.
+                    if (marker) {
+                        marker.setMap(null);
+                        delete livePoints[id];
+                    }
+                }
+
+                for (i = 0; i < delta.entering.length; i++) {
+                    item = delta.entering[i];
+                    position = new google.maps.LatLng(item.location.latitude, item.location.longitude);
+                    id = item.voa.id;
+                    if (! livePoints [id]) {
+                        marker = new google.maps.Marker({
+                            position: position,
+                            title: "UARN: " + id
+                        });
+                        livePoints[id] = marker;
+                    }
+                }
+
+                for (id in livePoints) {
+                    livePoints[id].setMap(map);
+                }
+            };
+
+            var mapDataHandler = function (delta) {
+                setTimeout(function () {
+                    showMap();
+                    updatePoints(delta);
+                }, 50);
+            };
+
+            return { mapDataHandler: mapDataHandler };
+        }());
+
+        var subscriptions = function() {
+        };
+
+        var sendHash = function (event) {
+            app.ports.locationHash.send(document.location.hash);
+        };
+
+        app.ports.mapData.subscribe(mapFns.mapDataHandler);
+        window.addEventListener('popstate', sendHash, false);
+    },
+    false
+);
