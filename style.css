@@ -1,0 +1,32 @@
+body {
+  font-family: 'Muli', sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+navbar {
+  font-family: 'Ovo', serif;
+}
+h1 {
+  text-align: center;
+}
+h2 {
+  text-align: center;
+  color: gray;
+}
+h3 {
+  font-style: italic;
+}
+h4 {
+  text-decoration: underline;
+}
+table {
+  font-size: 1.3rem;
+}
+.loading {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  text-align: center;
+}
