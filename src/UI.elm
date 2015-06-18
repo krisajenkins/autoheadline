@@ -23,6 +23,7 @@ body model =
   div []
       [h1 []
           [text "News"]
+      ,div [] [code [] [text <| toString model.graph]]
       ,case model.newsItems of
          Success (items) -> div [] (List.map itemView items)
          _ -> code [] [text <| toString model.newsItems]]

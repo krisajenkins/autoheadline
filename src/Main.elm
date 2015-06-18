@@ -13,18 +13,26 @@ decodeFeed = Json.decodeString decodeNewsItems
 
 newsStories : Signal (Response (List NewsItem))
 newsStories = Signal.map (Http.mapResult decodeFeed)
-                         (Http.sendGet <| constant "http://hn.algolia.com/api/v1/search_by_date?tags=story")
+                         (Http.sendGet <| constant "http://hn.algolia.com/api/v1/search_by_date?tags=story&hitsPerPage=200")
+
+graphFromNews : Response (List NewsItem) -> Maybe Graph
+graphFromNews r =
+  case r of
+    Success items -> Just (createGraph (List.map .title items))
+    _ -> Nothing
 
 ------------------------------------------------------------
 step : Action -> Model -> Model
 step action model =
   case action of
     NoOp -> model
-    LoadNews response -> {model | newsItems <- response}
+    LoadNews response -> {model | graph <- graphFromNews response
+                                , newsItems <- response}
 
 initialModel : Model
 initialModel =
-  {newsItems = NotAsked}
+  {newsItems = NotAsked
+  ,graph = Nothing}
 
 model : Signal Model
 model = foldp step
