@@ -26,13 +26,17 @@ step : Action -> Model -> Model
 step action model =
   case action of
     NoOp -> model
+    Reset -> {model | phrase <- ["START"]}
     LoadNews response -> {model | graph <- graphFromNews response
                                 , newsItems <- response}
+    ChooseToken s -> let currentPhrase = model.phrase
+                     in {model | phrase <- currentPhrase ++ [s]}
 
 initialModel : Model
 initialModel =
   {newsItems = NotAsked
-  ,graph = Nothing}
+  ,graph = Nothing
+  ,phrase = ["START"]}
 
 model : Signal Model
 model = foldp step

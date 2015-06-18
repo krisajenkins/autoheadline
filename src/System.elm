@@ -50,7 +50,10 @@ decodeNewsItems = at ["hits"] (list decodeNewsItem)
 
 type alias Model =
   {newsItems : Response (List NewsItem)
-  ,graph : Maybe Graph}
+  ,graph : Maybe Graph
+  ,phrase : Sentence}
 
 type Action = NoOp
             | LoadNews (Response (List NewsItem))
+            | ChooseToken String
+            | Reset
