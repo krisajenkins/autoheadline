@@ -8,31 +8,29 @@ import Http exposing (..)
 import Signal exposing (..)
 import Json.Decode as Json
 
-decodeIntList : String -> Result String (List Int)
-decodeIntList = Json.decodeString (Json.list Json.int)
+decodeFeed : String -> Result String (List NewsItem)
+decodeFeed = Json.decodeString decodeNewsItems
 
-newsStoryIdsRaw : Signal (Response String)
-newsStoryIdsRaw = Http.sendGet <| constant "https://hacker-news.firebaseio.com/v0/newstories.json"
-
-newsStoryIds : Signal (Response (List Int))
-newsStoryIds = Http.mapResult decodeIntList <~ newsStoryIdsRaw
+newsStories : Signal (Response (List NewsItem))
+newsStories = Signal.map (Http.mapResult decodeFeed)
+                         (Http.sendGet <| constant "http://hn.algolia.com/api/v1/search_by_date?tags=story")
 
 ------------------------------------------------------------
 step : Action -> Model -> Model
 step action model =
   case action of
     NoOp -> model
-    NewsIds response -> {model | newsIds <- response}
+    LoadNews response -> {model | newsItems <- response}
 
 initialModel : Model
 initialModel =
-  {newsIds = NotAsked}
+  {newsItems = NotAsked}
 
 model : Signal Model
 model = foldp step
               initialModel
               (mergeMany [uiMailbox.signal
-                         ,NewsIds <~ newsStoryIds])
+                         ,LoadNews <~ newsStories])
 
 uiMailbox : Mailbox Action
 uiMailbox = Signal.mailbox NoOp
