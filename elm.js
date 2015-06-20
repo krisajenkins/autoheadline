@@ -14149,7 +14149,7 @@ Elm.UI.make = function (_elm) {
                                    _L.fromArray([A2($Html.h4,
                                    _L.fromArray([]),
                                    _L.fromArray([A2($Html.a,
-                                   _L.fromArray([$Html$Attributes.href("http://krisajenkins.github.io/autoheadline/")]),
+                                   _L.fromArray([$Html$Attributes.href("https://github.com/krisajenkins/autoheadline")]),
                                    _L.fromArray([$Html.text("See the source code")]))]))]))]))
                       ,A2($Html.div,
                       _L.fromArray([$Html$Attributes.$class("row")]),
