@@ -14087,6 +14087,7 @@ Elm.UI.make = function (_elm) {
    $Html$Events = Elm.Html.Events.make(_elm),
    $Http = Elm.Http.make(_elm),
    $List = Elm.List.make(_elm),
+   $Markov = Elm.Markov.make(_elm),
    $Maybe = Elm.Maybe.make(_elm),
    $Schema = Elm.Schema.make(_elm),
    $Set = Elm.Set.make(_elm),
@@ -14095,7 +14096,7 @@ Elm.UI.make = function (_elm) {
    var loading = A2($Html.div,
    _L.fromArray([$Html$Attributes.$class("loading")]),
    _L.fromArray([A2($Html.img,
-   _L.fromArray([$Html$Attributes.src("/loading_wheel.gif")
+   _L.fromArray([$Html$Attributes.src("loading_wheel.gif")
                 ,$Html$Attributes.$class("loading")]),
    _L.fromArray([]))]));
    var tokenButton = F2(function (uiChannel,
@@ -14124,7 +14125,7 @@ Elm.UI.make = function (_elm) {
    model) {
       return function () {
          var currentToken = A2($Maybe.withDefault,
-         "START",
+         $Markov.startToken,
          $List.head($List.reverse(model.phrase)));
          var nextTokens = A2($Dict.get,
          currentToken,
@@ -14133,12 +14134,23 @@ Elm.UI.make = function (_elm) {
          model.graph));
          return A2($Html.div,
          _L.fromArray([]),
-         _L.fromArray([A2($Html.h1,
-                      _L.fromArray([]),
-                      _L.fromArray([$Html.text("Make Your Own HackerNews Headline")]))
-                      ,A2($Html.h2,
-                      _L.fromArray([]),
-                      _L.fromArray([$Html.text(" from the latest 200 stories.")]))
+         _L.fromArray([A2($Html.div,
+                      _L.fromArray([$Html$Attributes.$class("row")]),
+                      _L.fromArray([A2($Html.div,
+                                   _L.fromArray([$Html$Attributes.$class("col-xs-12 col-sm-8 col-sm-offset-2")]),
+                                   _L.fromArray([A2($Html.h1,
+                                                _L.fromArray([]),
+                                                _L.fromArray([$Html.text("Make Your Own HackerNews Headline")]))
+                                                ,A2($Html.h2,
+                                                _L.fromArray([]),
+                                                _L.fromArray([$Html.text(" from the latest 200 stories.")]))]))
+                                   ,A2($Html.div,
+                                   _L.fromArray([$Html$Attributes.$class("col-xs-12 col-sm-2")]),
+                                   _L.fromArray([A2($Html.h4,
+                                   _L.fromArray([]),
+                                   _L.fromArray([A2($Html.a,
+                                   _L.fromArray([$Html$Attributes.href("http://krisajenkins.github.io/autoheadline/")]),
+                                   _L.fromArray([$Html.text("See the source code")]))]))]))]))
                       ,A2($Html.div,
                       _L.fromArray([$Html$Attributes.$class("row")]),
                       _L.fromArray([A2($Html.div,
@@ -14168,7 +14180,7 @@ Elm.UI.make = function (_elm) {
                                            _L.fromArray([]),
                                            _L.fromArray([]));}
                                       _U.badCase($moduleName,
-                                      "between lines 52 and 54");
+                                      "between lines 58 and 60");
                                    }()]))
                                    ,A2($Html.div,
                                    _L.fromArray([$Html$Attributes.$class("col-xs-12 col-sm-2")]),
