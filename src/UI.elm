@@ -45,7 +45,7 @@ body uiChannel model =
                    ,h2 []
                        [text " from the latest 200 stories."]]
               ,div [class "col-xs-12 col-sm-2"]
-                   [h4 [] [a [href "http://krisajenkins.github.io/autoheadline/"]
+                   [h4 [] [a [href "https://github.com/krisajenkins/autoheadline"]
                              [text "See the source code"]]]]
          ,div [class "row"]
               [div [class "col-xs-12 col-sm-8 col-sm-offset-2"]
