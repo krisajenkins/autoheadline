@@ -64,6 +64,6 @@ body uiChannel model =
 
 loading : Html
 loading = div [class "loading"]
-              [img [src "/loading_wheel.gif"
+              [img [src "loading_wheel.gif"
                    ,class "loading"]
                    []]
