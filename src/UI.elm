@@ -8,6 +8,7 @@ import Html.Events exposing (..)
 import Signal exposing (..)
 import Dict
 import Set
+import Markov
 import Schema exposing (..)
 
 rootView : Address Action -> Model -> Html
@@ -34,7 +35,7 @@ tokenButtons uiChannel tokens =
 
 body : Address Action -> Model -> Html
 body uiChannel model =
-  let currentToken = Maybe.withDefault "START" (List.head (List.reverse model.phrase))
+  let currentToken = Maybe.withDefault Markov.startToken (List.head (List.reverse model.phrase))
       nextTokens = Dict.get currentToken (Maybe.withDefault Dict.empty model.graph)
   in div []
          [h1 []
