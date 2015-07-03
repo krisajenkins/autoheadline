@@ -1,6 +1,5 @@
 module Main where
 
-import Debug
 import UI exposing (..)
 import Schema exposing (..)
 import Markov exposing (..)

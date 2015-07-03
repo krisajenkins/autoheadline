@@ -2,7 +2,6 @@ module Schema where
 
 import Http exposing (Response)
 import Json.Decode exposing (..)
-import Json.Decode.Extra exposing (apply)
 import Markov exposing (Graph,Sentence)
 
 type alias NewsItem =
