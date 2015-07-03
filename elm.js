@@ -508,7 +508,7 @@ Elm.Color.make = function (_elm) {
                         ,saturation: s};
               }();}
          _U.badCase($moduleName,
-         "between lines 114 and 121");
+         "between lines 114 and 118");
       }();
    };
    var HSLA = F4(function (a,
@@ -564,7 +564,7 @@ Elm.Color.make = function (_elm) {
                  color._3);
               }();}
          _U.badCase($moduleName,
-         "between lines 105 and 111");
+         "between lines 105 and 108");
       }();
    };
    var grayscale = function (p) {
@@ -785,84 +785,6 @@ Elm.Color.make = function (_elm) {
                        ,darkGray: darkGray};
    return _elm.Color.values;
 };
-Elm.Date = Elm.Date || {};
-Elm.Date.make = function (_elm) {
-   "use strict";
-   _elm.Date = _elm.Date || {};
-   if (_elm.Date.values)
-   return _elm.Date.values;
-   var _op = {},
-   _N = Elm.Native,
-   _U = _N.Utils.make(_elm),
-   _L = _N.List.make(_elm),
-   $moduleName = "Date",
-   $Native$Date = Elm.Native.Date.make(_elm),
-   $Result = Elm.Result.make(_elm),
-   $Time = Elm.Time.make(_elm);
-   var millisecond = $Native$Date.millisecond;
-   var second = $Native$Date.second;
-   var minute = $Native$Date.minute;
-   var hour = $Native$Date.hour;
-   var dayOfWeek = $Native$Date.dayOfWeek;
-   var day = $Native$Date.day;
-   var month = $Native$Date.month;
-   var year = $Native$Date.year;
-   var fromTime = $Native$Date.fromTime;
-   var toTime = $Native$Date.toTime;
-   var fromString = $Native$Date.read;
-   var Dec = {ctor: "Dec"};
-   var Nov = {ctor: "Nov"};
-   var Oct = {ctor: "Oct"};
-   var Sep = {ctor: "Sep"};
-   var Aug = {ctor: "Aug"};
-   var Jul = {ctor: "Jul"};
-   var Jun = {ctor: "Jun"};
-   var May = {ctor: "May"};
-   var Apr = {ctor: "Apr"};
-   var Mar = {ctor: "Mar"};
-   var Feb = {ctor: "Feb"};
-   var Jan = {ctor: "Jan"};
-   var Sun = {ctor: "Sun"};
-   var Sat = {ctor: "Sat"};
-   var Fri = {ctor: "Fri"};
-   var Thu = {ctor: "Thu"};
-   var Wed = {ctor: "Wed"};
-   var Tue = {ctor: "Tue"};
-   var Mon = {ctor: "Mon"};
-   var Date = {ctor: "Date"};
-   _elm.Date.values = {_op: _op
-                      ,fromString: fromString
-                      ,toTime: toTime
-                      ,fromTime: fromTime
-                      ,year: year
-                      ,month: month
-                      ,day: day
-                      ,dayOfWeek: dayOfWeek
-                      ,hour: hour
-                      ,minute: minute
-                      ,second: second
-                      ,millisecond: millisecond
-                      ,Jan: Jan
-                      ,Feb: Feb
-                      ,Mar: Mar
-                      ,Apr: Apr
-                      ,May: May
-                      ,Jun: Jun
-                      ,Jul: Jul
-                      ,Aug: Aug
-                      ,Sep: Sep
-                      ,Oct: Oct
-                      ,Nov: Nov
-                      ,Dec: Dec
-                      ,Mon: Mon
-                      ,Tue: Tue
-                      ,Wed: Wed
-                      ,Thu: Thu
-                      ,Fri: Fri
-                      ,Sat: Sat
-                      ,Sun: Sun};
-   return _elm.Date.values;
-};
 Elm.Debug = Elm.Debug || {};
 Elm.Debug.make = function (_elm) {
    "use strict";
@@ -922,7 +844,7 @@ Elm.Dict.make = function (_elm) {
               A3(foldr,f,acc,t._4)),
               t._3);}
          _U.badCase($moduleName,
-         "between lines 417 and 425");
+         "between lines 417 and 421");
       }();
    });
    var keys = function (dict) {
@@ -978,7 +900,7 @@ Elm.Dict.make = function (_elm) {
               A3(foldl,f,acc,dict._3)),
               dict._4);}
          _U.badCase($moduleName,
-         "between lines 406 and 414");
+         "between lines 406 and 410");
       }();
    });
    var isBBlack = function (dict) {
@@ -1002,7 +924,7 @@ Elm.Dict.make = function (_elm) {
             case "Remove": return "Remove";
             case "Same": return "Same";}
          _U.badCase($moduleName,
-         "between lines 182 and 188");
+         "between lines 182 and 185");
       }();
    };
    var Same = {ctor: "Same"};
@@ -1032,10 +954,10 @@ Elm.Dict.make = function (_elm) {
                       targetKey,
                       dict._3);}
                  _U.badCase($moduleName,
-                 "between lines 129 and 135");
+                 "between lines 129 and 132");
               }();}
          _U.badCase($moduleName,
-         "between lines 124 and 135");
+         "between lines 124 and 132");
       }();
    });
    var member = F2(function (key,
@@ -1046,7 +968,7 @@ Elm.Dict.make = function (_elm) {
          {case "Just": return true;
             case "Nothing": return false;}
          _U.badCase($moduleName,
-         "between lines 138 and 146");
+         "between lines 138 and 140");
       }();
    });
    var max = function (dict) {
@@ -1062,7 +984,7 @@ Elm.Dict.make = function (_elm) {
                         ,_1: dict._2};}
               return max(dict._4);}
          _U.badCase($moduleName,
-         "between lines 100 and 121");
+         "between lines 100 and 108");
       }();
    };
    var min = function (dict) {
@@ -1134,7 +1056,7 @@ Elm.Dict.make = function (_elm) {
               A2(map,f,dict._3),
               A2(map,f,dict._4));}
          _U.badCase($moduleName,
-         "between lines 394 and 403");
+         "between lines 394 and 399");
       }();
    });
    var showNColor = function (c) {
@@ -1183,7 +1105,7 @@ Elm.Dict.make = function (_elm) {
                    dict._4);}
               break;}
          _U.badCase($moduleName,
-         "between lines 154 and 166");
+         "between lines 154 and 162");
       }();
    };
    var blackish = function (t) {
@@ -1267,7 +1189,7 @@ Elm.Dict.make = function (_elm) {
               t._3,
               t._4);}
          _U.badCase($moduleName,
-         "between lines 386 and 391");
+         "between lines 386 and 388");
       }();
    };
    var balance_node = function (t) {
@@ -1734,7 +1656,7 @@ Elm.Dict.make = function (_elm) {
                case "Same":
                return updatedDict;}
             _U.badCase($moduleName,
-            "between lines 222 and 228");
+            "between lines 222 and 225");
          }();
       }();
    });
@@ -1995,7 +1917,7 @@ Elm.Graphics.Collage.make = function (_elm) {
                               ,["y",f.y + _v0._1]],
               f);}
          _U.badCase($moduleName,
-         "on line 226, column 7 to 35");
+         "on line 226, column 3 to 37");
       }();
    });
    var form = function (f) {
@@ -2678,7 +2600,7 @@ Elm.Graphics.Element.make = function (_elm) {
                  maxOrZero(ws),
                  $List.sum(hs));}
             _U.badCase($moduleName,
-            "between lines 362 and 373");
+            "between lines 362 and 368");
          }();
       }();
    });
@@ -2777,7 +2699,12 @@ Elm.Html.make = function (_elm) {
    _U = _N.Utils.make(_elm),
    _L = _N.List.make(_elm),
    $moduleName = "Html",
+   $Basics = Elm.Basics.make(_elm),
    $Graphics$Element = Elm.Graphics.Element.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm),
    $VirtualDom = Elm.VirtualDom.make(_elm);
    var fromElement = $VirtualDom.fromElement;
    var toElement = $VirtualDom.toElement;
@@ -3005,6 +2932,9 @@ Elm.Html.Attributes.make = function (_elm) {
    $Html = Elm.Html.make(_elm),
    $Json$Encode = Elm.Json.Encode.make(_elm),
    $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm),
    $String = Elm.String.make(_elm),
    $VirtualDom = Elm.VirtualDom.make(_elm);
    var attribute = $VirtualDom.attribute;
@@ -3629,8 +3559,12 @@ Elm.Html.Events.make = function (_elm) {
    _U = _N.Utils.make(_elm),
    _L = _N.List.make(_elm),
    $moduleName = "Html.Events",
+   $Basics = Elm.Basics.make(_elm),
    $Html = Elm.Html.make(_elm),
    $Json$Decode = Elm.Json.Decode.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Result = Elm.Result.make(_elm),
    $Signal = Elm.Signal.make(_elm),
    $VirtualDom = Elm.VirtualDom.make(_elm);
    var keyCode = A2($Json$Decode._op[":="],
@@ -3719,6 +3653,9 @@ Elm.Http.make = function (_elm) {
    _U = _N.Utils.make(_elm),
    _L = _N.List.make(_elm),
    $moduleName = "Http",
+   $Basics = Elm.Basics.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
    $Native$Http = Elm.Native.Http.make(_elm),
    $Result = Elm.Result.make(_elm),
    $Signal = Elm.Signal.make(_elm);
@@ -3977,41 +3914,6 @@ Elm.Json.Decode.make = function (_elm) {
    return _elm.Json.Decode.values;
 };
 Elm.Json = Elm.Json || {};
-Elm.Json.Decode = Elm.Json.Decode || {};
-Elm.Json.Decode.Extra = Elm.Json.Decode.Extra || {};
-Elm.Json.Decode.Extra.make = function (_elm) {
-   "use strict";
-   _elm.Json = _elm.Json || {};
-   _elm.Json.Decode = _elm.Json.Decode || {};
-   _elm.Json.Decode.Extra = _elm.Json.Decode.Extra || {};
-   if (_elm.Json.Decode.Extra.values)
-   return _elm.Json.Decode.Extra.values;
-   var _op = {},
-   _N = Elm.Native,
-   _U = _N.Utils.make(_elm),
-   _L = _N.List.make(_elm),
-   $moduleName = "Json.Decode.Extra",
-   $Date = Elm.Date.make(_elm),
-   $Json$Decode = Elm.Json.Decode.make(_elm);
-   var date = A2($Json$Decode.customDecoder,
-   $Json$Decode.string,
-   $Date.fromString);
-   var apply = F2(function (f,
-   aDecoder) {
-      return A2($Json$Decode.andThen,
-      f,
-      function (f$) {
-         return A2($Json$Decode.map,
-         f$,
-         aDecoder);
-      });
-   });
-   _elm.Json.Decode.Extra.values = {_op: _op
-                                   ,apply: apply
-                                   ,date: date};
-   return _elm.Json.Decode.Extra.values;
-};
-Elm.Json = Elm.Json || {};
 Elm.Json.Encode = Elm.Json.Encode || {};
 Elm.Json.Encode.make = function (_elm) {
    "use strict";
@@ -4166,7 +4068,7 @@ Elm.List.make = function (_elm) {
             case "[]":
             return $Maybe.Nothing;}
          _U.badCase($moduleName,
-         "between lines 87 and 95");
+         "between lines 87 and 89");
       }();
    };
    var head = function (list) {
@@ -4177,7 +4079,7 @@ Elm.List.make = function (_elm) {
             case "[]":
             return $Maybe.Nothing;}
          _U.badCase($moduleName,
-         "between lines 75 and 84");
+         "between lines 75 and 77");
       }();
    };
    _op["::"] = $Native$List.cons;
@@ -4216,7 +4118,7 @@ Elm.List.make = function (_elm) {
             return A2(_op["::"],_v15._0,xs);
             case "Nothing": return xs;}
          _U.badCase($moduleName,
-         "between lines 179 and 186");
+         "between lines 179 and 181");
       }();
    });
    var filterMap = F2(function (f,
@@ -4363,7 +4265,7 @@ Elm.List.make = function (_elm) {
             case "[]":
             return _L.fromArray([]);}
          _U.badCase($moduleName,
-         "between lines 350 and 361");
+         "between lines 350 and 356");
       }();
    });
    _elm.List.values = {_op: _op
@@ -4422,6 +4324,7 @@ Elm.Main.make = function (_elm) {
    $List = Elm.List.make(_elm),
    $Markov = Elm.Markov.make(_elm),
    $Maybe = Elm.Maybe.make(_elm),
+   $Result = Elm.Result.make(_elm),
    $Schema = Elm.Schema.make(_elm),
    $Signal = Elm.Signal.make(_elm),
    $UI = Elm.UI.make(_elm);
@@ -4466,12 +4369,12 @@ Elm.Main.make = function (_elm) {
                                ,_L.fromArray([$Markov.startToken])]],
               model);}
          _U.badCase($moduleName,
-         "between lines 25 and 31");
+         "between lines 24 and 30");
       }();
    });
    var newsStories = A2($Signal.map,
    $Http.mapResult($Json$Decode.decodeString($Schema.decodeNewsItems)),
-   $Http.sendGet($Signal.constant("http://hn.algolia.com/api/v1/search_by_date?tags=story&hitsPerPage=200")));
+   $Http.sendGet($Signal.constant("https://hn.algolia.com/api/v1/search_by_date?tags=story&hitsPerPage=200")));
    var model = A3($Signal.foldp,
    step,
    initialModel,
@@ -4507,7 +4410,9 @@ Elm.Markov.make = function (_elm) {
    $Dict = Elm.Dict.make(_elm),
    $List = Elm.List.make(_elm),
    $Maybe = Elm.Maybe.make(_elm),
+   $Result = Elm.Result.make(_elm),
    $Set = Elm.Set.make(_elm),
+   $Signal = Elm.Signal.make(_elm),
    $String = Elm.String.make(_elm);
    var initialGraph = $Dict.empty;
    var addPair = F2(function (_v0,
@@ -4599,7 +4504,7 @@ Elm.Maybe.make = function (_elm) {
             case "Nothing":
             return $default;}
          _U.badCase($moduleName,
-         "between lines 45 and 56");
+         "between lines 45 and 47");
       }();
    });
    var Nothing = {ctor: "Nothing"};
@@ -4612,11 +4517,11 @@ Elm.Maybe.make = function (_elm) {
                     case "Nothing":
                     return oneOf(maybes._1);}
                  _U.badCase($moduleName,
-                 "between lines 64 and 73");
+                 "between lines 64 and 66");
               }();
             case "[]": return Nothing;}
          _U.badCase($moduleName,
-         "between lines 59 and 73");
+         "between lines 59 and 66");
       }();
    };
    var andThen = F2(function (maybeValue,
@@ -4641,7 +4546,7 @@ Elm.Maybe.make = function (_elm) {
             return Just(f(maybe._0));
             case "Nothing": return Nothing;}
          _U.badCase($moduleName,
-         "between lines 76 and 107");
+         "between lines 76 and 78");
       }();
    });
    _elm.Maybe.values = {_op: _op
@@ -5831,52 +5736,6 @@ Elm.Native.Color.make = function(localRuntime) {
 
 	return localRuntime.Native.Color.values = {
 		toCss: toCss
-	};
-
-};
-
-Elm.Native.Date = {};
-Elm.Native.Date.make = function(localRuntime) {
-	localRuntime.Native = localRuntime.Native || {};
-	localRuntime.Native.Date = localRuntime.Native.Date || {};
-	if (localRuntime.Native.Date.values)
-	{
-		return localRuntime.Native.Date.values;
-	}
-
-	var Result = Elm.Result.make(localRuntime);
-
-	function dateNow()
-	{
-		return new window.Date;
-	}
-
-	function readDate(str)
-	{
-		var date = new window.Date(str);
-		return isNaN(date.getTime())
-			? Result.Err("unable to parse '" + str + "' as a date")
-			: Result.Ok(date);
-	}
-
-	var dayTable = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-	var monthTable =
-		["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-		 "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
-
-	return localRuntime.Native.Date.values = {
-		read    : readDate,
-		year    : function(d) { return d.getFullYear(); },
-		month   : function(d) { return { ctor:monthTable[d.getMonth()] }; },
-		day     : function(d) { return d.getDate(); },
-		hour    : function(d) { return d.getHours(); },
-		minute  : function(d) { return d.getMinutes(); },
-		second  : function(d) { return d.getSeconds(); },
-		millisecond: function (d) { return d.getMilliseconds(); },
-		toTime  : function(d) { return d.getTime(); },
-		fromTime: function(t) { return new window.Date(t); },
-		dayOfWeek : function(d) { return { ctor:dayTable[d.getDay()] }; }
 	};
 
 };
@@ -10395,117 +10254,6 @@ Elm.Native.Text.make = function(localRuntime) {
 	};
 };
 
-Elm.Native.Time = {};
-Elm.Native.Time.make = function(localRuntime)
-{
-
-	localRuntime.Native = localRuntime.Native || {};
-	localRuntime.Native.Time = localRuntime.Native.Time || {};
-	if (localRuntime.Native.Time.values)
-	{
-		return localRuntime.Native.Time.values;
-	}
-
-	var NS = Elm.Native.Signal.make(localRuntime);
-	var Maybe = Elm.Maybe.make(localRuntime);
-
-
-	// FRAMES PER SECOND
-
-	function fpsWhen(desiredFPS, isOn)
-	{
-		var msPerFrame = 1000 / desiredFPS;
-		var ticker = NS.input('fps-' + desiredFPS, null);
-
-		function notifyTicker()
-		{
-			localRuntime.notify(ticker.id, null);
-		}
-
-		function firstArg(x, y)
-		{
-			return x;
-		}
-
-		// input fires either when isOn changes, or when ticker fires.
-		// Its value is a tuple with the current timestamp, and the state of isOn
-		var input = NS.timestamp(A3(NS.map2, F2(firstArg), NS.dropRepeats(isOn), ticker));
-
-		var initialState = {
-			isOn: false,
-			time: localRuntime.timer.programStart,
-			delta: 0
-		};
-
-		var timeoutId;
-
-		function update(input,state)
-		{
-			var currentTime = input._0;
-			var isOn = input._1;
-			var wasOn = state.isOn;
-			var previousTime = state.time;
-
-			if (isOn)
-			{
-				timeoutId = localRuntime.setTimeout(notifyTicker, msPerFrame);
-			}
-			else if (wasOn)
-			{
-				clearTimeout(timeoutId);
-			}
-
-			return {
-				isOn: isOn,
-				time: currentTime,
-				delta: (isOn && !wasOn) ? 0 : currentTime - previousTime
-			};
-		}
-
-		return A2(
-			NS.map,
-			function(state) { return state.delta; },
-			A3(NS.foldp, F2(update), update(input.value,initialState), input)
-		);
-	}
-
-
-	// EVERY
-
-	function every(t)
-	{
-		var ticker = NS.input('every-' + t, null);
-		function tellTime()
-		{
-			localRuntime.notify(ticker.id, null);
-		}
-		var clock = A2( NS.map, fst, NS.timestamp(ticker) );
-		setInterval(tellTime, t);
-		return clock;
-	}
-
-
-	function fst(pair)
-	{
-		return pair._0;
-	}
-
-
-	function read(s)
-	{
-		var t = Date.parse(s);
-		return isNaN(t) ? Maybe.Nothing : Maybe.Just(t);
-	}
-
-	return localRuntime.Native.Time.values = {
-		fpsWhen: F2(fpsWhen),
-		every: every,
-		toDate: function(t) { return new window.Date(t); },
-		read: read
-	};
-
-};
-
 Elm.Native.Transform2D = {};
 Elm.Native.Transform2D.make = function(localRuntime) {
 
@@ -12985,7 +12733,7 @@ Elm.Result.make = function (_elm) {
             case "Ok":
             return $Maybe.Just(result._0);}
          _U.badCase($moduleName,
-         "between lines 164 and 177");
+         "between lines 164 and 166");
       }();
    };
    var Err = function (a) {
@@ -13000,7 +12748,7 @@ Elm.Result.make = function (_elm) {
             case "Ok":
             return callback(result._0);}
          _U.badCase($moduleName,
-         "between lines 126 and 145");
+         "between lines 126 and 128");
       }();
    });
    var Ok = function (a) {
@@ -13014,7 +12762,7 @@ Elm.Result.make = function (_elm) {
             case "Ok":
             return Ok(func(ra._0));}
          _U.badCase($moduleName,
-         "between lines 41 and 52");
+         "between lines 41 and 43");
       }();
    });
    var map2 = F3(function (func,
@@ -13168,7 +12916,7 @@ Elm.Result.make = function (_elm) {
                  return Err(_v39._4._0);}
               break;}
          _U.badCase($moduleName,
-         "between lines 82 and 123");
+         "between lines 82 and 88");
       }();
    });
    var formatError = F2(function (f,
@@ -13180,7 +12928,7 @@ Elm.Result.make = function (_elm) {
             case "Ok":
             return Ok(result._0);}
          _U.badCase($moduleName,
-         "between lines 148 and 161");
+         "between lines 148 and 150");
       }();
    });
    var fromMaybe = F2(function (err,
@@ -13220,10 +12968,14 @@ Elm.Schema.make = function (_elm) {
    _U = _N.Utils.make(_elm),
    _L = _N.List.make(_elm),
    $moduleName = "Schema",
+   $Basics = Elm.Basics.make(_elm),
    $Http = Elm.Http.make(_elm),
    $Json$Decode = Elm.Json.Decode.make(_elm),
+   $List = Elm.List.make(_elm),
    $Markov = Elm.Markov.make(_elm),
-   $Maybe = Elm.Maybe.make(_elm);
+   $Maybe = Elm.Maybe.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm);
    var Reset = {ctor: "Reset"};
    var ChooseToken = function (a) {
       return {ctor: "ChooseToken"
@@ -13471,7 +13223,7 @@ Elm.Signal.make = function (_elm) {
             case "[]":
             return $Debug.crash("mergeMany was given an empty list!");}
          _U.badCase($moduleName,
-         "between lines 177 and 197");
+         "between lines 177 and 182");
       }();
    };
    var foldp = $Native$Signal.foldp;
@@ -13925,85 +13677,6 @@ Elm.Text.make = function (_elm) {
                       ,Through: Through};
    return _elm.Text.values;
 };
-Elm.Time = Elm.Time || {};
-Elm.Time.make = function (_elm) {
-   "use strict";
-   _elm.Time = _elm.Time || {};
-   if (_elm.Time.values)
-   return _elm.Time.values;
-   var _op = {},
-   _N = Elm.Native,
-   _U = _N.Utils.make(_elm),
-   _L = _N.List.make(_elm),
-   $moduleName = "Time",
-   $Basics = Elm.Basics.make(_elm),
-   $Native$Signal = Elm.Native.Signal.make(_elm),
-   $Native$Time = Elm.Native.Time.make(_elm),
-   $Signal = Elm.Signal.make(_elm);
-   var delay = $Native$Signal.delay;
-   var since = F2(function (time,
-   signal) {
-      return function () {
-         var stop = A2($Signal.map,
-         $Basics.always(-1),
-         A2(delay,time,signal));
-         var start = A2($Signal.map,
-         $Basics.always(1),
-         signal);
-         var delaydiff = A3($Signal.foldp,
-         F2(function (x,y) {
-            return x + y;
-         }),
-         0,
-         A2($Signal.merge,start,stop));
-         return A2($Signal.map,
-         F2(function (x,y) {
-            return !_U.eq(x,y);
-         })(0),
-         delaydiff);
-      }();
-   });
-   var timestamp = $Native$Signal.timestamp;
-   var every = $Native$Time.every;
-   var fpsWhen = $Native$Time.fpsWhen;
-   var fps = function (targetFrames) {
-      return A2(fpsWhen,
-      targetFrames,
-      $Signal.constant(true));
-   };
-   var inMilliseconds = function (t) {
-      return t;
-   };
-   var millisecond = 1;
-   var second = 1000 * millisecond;
-   var minute = 60 * second;
-   var hour = 60 * minute;
-   var inHours = function (t) {
-      return t / hour;
-   };
-   var inMinutes = function (t) {
-      return t / minute;
-   };
-   var inSeconds = function (t) {
-      return t / second;
-   };
-   _elm.Time.values = {_op: _op
-                      ,millisecond: millisecond
-                      ,second: second
-                      ,minute: minute
-                      ,hour: hour
-                      ,inMilliseconds: inMilliseconds
-                      ,inSeconds: inSeconds
-                      ,inMinutes: inMinutes
-                      ,inHours: inHours
-                      ,fps: fps
-                      ,fpsWhen: fpsWhen
-                      ,every: every
-                      ,timestamp: timestamp
-                      ,delay: delay
-                      ,since: since};
-   return _elm.Time.values;
-};
 Elm.Transform2D = Elm.Transform2D || {};
 Elm.Transform2D.make = function (_elm) {
    "use strict";
@@ -14089,6 +13762,7 @@ Elm.UI.make = function (_elm) {
    $List = Elm.List.make(_elm),
    $Markov = Elm.Markov.make(_elm),
    $Maybe = Elm.Maybe.make(_elm),
+   $Result = Elm.Result.make(_elm),
    $Schema = Elm.Schema.make(_elm),
    $Set = Elm.Set.make(_elm),
    $Signal = Elm.Signal.make(_elm),
@@ -14237,9 +13911,13 @@ Elm.VirtualDom.make = function (_elm) {
    _U = _N.Utils.make(_elm),
    _L = _N.List.make(_elm),
    $moduleName = "VirtualDom",
+   $Basics = Elm.Basics.make(_elm),
    $Graphics$Element = Elm.Graphics.Element.make(_elm),
    $Json$Decode = Elm.Json.Decode.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
    $Native$VirtualDom = Elm.Native.VirtualDom.make(_elm),
+   $Result = Elm.Result.make(_elm),
    $Signal = Elm.Signal.make(_elm);
    var lazy3 = $Native$VirtualDom.lazy3;
    var lazy2 = $Native$VirtualDom.lazy2;
