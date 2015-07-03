@@ -11,7 +11,7 @@ import Json.Decode as Json
 
 newsStories : Signal (Response (List NewsItem))
 newsStories = Signal.map (Http.mapResult <| Json.decodeString decodeNewsItems)
-                         (Http.sendGet <| constant "http://hn.algolia.com/api/v1/search_by_date?tags=story&hitsPerPage=200")
+                         (Http.sendGet <| constant "https://hn.algolia.com/api/v1/search_by_date?tags=story&hitsPerPage=200")
 
 graphFromNews : Response (List NewsItem) -> Maybe Graph
 graphFromNews r =
