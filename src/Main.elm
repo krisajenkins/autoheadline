@@ -23,11 +23,11 @@ step : Action -> Model -> Model
 step action model =
   case action of
     NoOp -> model
-    Reset -> {model | phrase <- [startToken]}
-    LoadNews response -> {model | graph <- graphFromNews response
-                                , newsItems <- response}
+    Reset -> {model | phrase = [startToken]}
+    LoadNews response -> {model | graph = graphFromNews response
+                                , newsItems = response}
     ChooseToken s -> let currentPhrase = model.phrase
-                     in {model | phrase <- currentPhrase ++ [s]}
+                     in {model | phrase = currentPhrase ++ [s]}
 
 initialModel : Model
 initialModel =
@@ -39,10 +39,10 @@ model : Signal Model
 model = foldp step
               initialModel
               (mergeMany [uiMailbox.signal
-                         ,LoadNews <~ newsStories])
+                         ,Signal.map LoadNews newsStories])
 
 uiMailbox : Mailbox Action
 uiMailbox = Signal.mailbox NoOp
 
 main : Signal Html
-main = rootView uiMailbox.address <~ model
+main = Signal.map (rootView uiMailbox.address) model
