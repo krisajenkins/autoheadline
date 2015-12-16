@@ -18,7 +18,8 @@ type alias Model =
   ,graph : Maybe Graph
   ,phrase : Sentence}
 
-type Action = NoOp
-            | LoadNews (Response (List NewsItem))
-            | ChooseToken String
-            | Reset
+type Action
+  = NoOp
+  | LoadNews (Response (List NewsItem))
+  | ChooseToken String
+  | Reset
