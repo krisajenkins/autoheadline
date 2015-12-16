@@ -17,21 +17,19 @@ endToken = "END"
 toSentence : String -> Sentence
 toSentence s = [startToken] ++ (words s) ++ [endToken]
 
-addPair : (Token,Token) -> Graph -> Graph
-addPair (from,to) g =
-  let updater m = case m of
-                    Nothing -> Just (Set.singleton to)
-                    Just vs -> Just (Set.insert to vs)
-  in Dict.update from updater g
+addLink : (Token,Token) -> Graph -> Graph
+addLink (from,to) graph =
+  let updater = Just << Set.insert to << Maybe.withDefault Set.empty
+  in Dict.update from updater graph
 
-addChain : String -> Graph -> Graph
-addChain s g =
+addSentence : String -> Graph -> Graph
+addSentence s g =
   let sentence = toSentence s
       pairs = List.map2 (,) sentence (Maybe.withDefault [] (List.tail sentence))
-  in List.foldl addPair g pairs
+  in List.foldl addLink g pairs
 
 initialGraph : Graph
 initialGraph = Dict.empty
 
 createGraph : List String -> Graph
-createGraph = List.foldl addChain initialGraph
+createGraph = List.foldl addSentence initialGraph
