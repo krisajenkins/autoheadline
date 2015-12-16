@@ -7,6 +7,6 @@
                   (interactive)
                   (require 'magit)
                   (let ((compile-command (format "cd %s ; make"
-                                                 (magit-get-top-dir))))
+                                                 (magit-toplevel))))
                     (save-buffer)
                     (compile compile-command))))))

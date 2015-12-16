@@ -28,7 +28,7 @@ dist/%.js: static/%.js dist
 	cp $< $@
 
 dist/elm.js: src/* dist
-	elm-make src/Main.elm --output=$@ --warn
+	elm-make --warn src/Main.elm --output=$@
 
 elm.js: src/* elm-package.json
 	elm-make src/Main.elm
