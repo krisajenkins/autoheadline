@@ -1,6 +1,6 @@
-module Schema where
+module Types where
 
-import Http exposing (Response)
+import Http exposing (Error)
 import Json.Decode exposing (..)
 import Markov exposing (Graph,Sentence)
 
@@ -8,18 +8,20 @@ type alias NewsItem =
   {title : String}
 
 decodeNewsItem : Decoder NewsItem
-decodeNewsItem = NewsItem `map` ("title" := string)
+decodeNewsItem =
+  object1 NewsItem
+    ("title" := string)
 
 decodeNewsItems : Decoder (List NewsItem)
-decodeNewsItems = at ["hits"] (list decodeNewsItem)
+decodeNewsItems =
+  at ["hits"]
+     (list decodeNewsItem)
 
 type alias Model =
-  {newsItems : Response (List NewsItem)
-  ,graph : Maybe Graph
+  {newsItems : Maybe (Result Error (List NewsItem))
   ,phrase : Sentence}
 
 type Action
-  = NoOp
-  | LoadNews (Response (List NewsItem))
+  = LoadNews (Result Error (List NewsItem))
   | ChooseToken String
   | Reset
