@@ -94,8 +94,8 @@ body uiChannel model =
         [ class "row" ]
         [ div
             [ class "col-xs-12 col-sm-8 col-sm-offset-2" ]
-            [ blockquote
-                []
+            [ div
+                [ class "well" ]
                 [ h3 [] [ text <| String.join " " model.phrase ] ]
             ]
         ]
