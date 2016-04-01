@@ -6,7 +6,7 @@ import Effects exposing (Effects, Never, none)
 import StartApp exposing (App)
 import Types exposing (Model)
 import Html exposing (Html)
-import State exposing (initialState, update, effect)
+import State exposing (initialState, update)
 
 
 app : App Model
@@ -14,16 +14,7 @@ app =
   StartApp.start
     { init = initialState
     , view = rootView
-    , update =
-        \action model ->
-          let
-            newModel =
-              update action model
-
-            newEffects =
-              effect action newModel
-          in
-            ( newModel, newEffects )
+    , update = update
     , inputs = []
     }
 
