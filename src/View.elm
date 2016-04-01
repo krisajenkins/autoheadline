@@ -137,8 +137,13 @@ newsBody uiChannel currentPhrase newsItems =
       [ div
           [ class "row" ]
           [ div
-              [ class "col-xs-12 col-sm-2 well" ]
-              [ text "Click any button to choose the next word." ]
+              [ class "col-xs-12 col-sm-2" ]
+              [ button
+                  [ class "btn btn-warning"
+                  , onClick uiChannel Reset
+                  ]
+                  [ text "Reset!" ]
+              ]
           , div
               [ class "col-xs-12 col-sm-8" ]
               [ case nextTokens of
@@ -153,13 +158,8 @@ newsBody uiChannel currentPhrase newsItems =
                       tokenButtons uiChannel weightedTokens
               ]
           , div
-              [ class "col-xs-12 col-sm-2" ]
-              [ button
-                  [ class "btn btn-warning"
-                  , onClick uiChannel Reset
-                  ]
-                  [ text "Reset!" ]
-              ]
+              [ class "col-xs-12 col-sm-2 well" ]
+              [ text "Click any button to choose the next word." ]
           ]
       , div
           [ class "row" ]
