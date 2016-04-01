@@ -11238,7 +11238,9 @@ Elm.View.make = function (_elm) {
               _U.list([$Html$Attributes.$class("row")]),
               _U.list([A2($Html.div,
               _U.list([$Html$Attributes.$class("col-xs-12 col-sm-8 col-sm-offset-2")]),
-              _U.list([A2($Html.blockquote,_U.list([]),_U.list([A2($Html.h3,_U.list([]),_U.list([$Html.text(A2($String.join," ",model.phrase))]))]))]))]))
+              _U.list([A2($Html.div,
+              _U.list([$Html$Attributes.$class("well")]),
+              _U.list([A2($Html.h3,_U.list([]),_U.list([$Html.text(A2($String.join," ",model.phrase))]))]))]))]))
               ,function () {
                  var _p5 = model.newsItems;
                  if (_p5.ctor === "Just") {
