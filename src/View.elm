@@ -85,7 +85,9 @@ body uiChannel model =
           newsBody uiChannel model.phrase items
 
         Just (Err err) ->
-          div [ class "alert alert-danger" ] [ text (toString err) ]
+          div
+            [ class "alert alert-danger" ]
+            [ text (toString err) ]
 
         _ ->
           loading
@@ -96,7 +98,9 @@ newsBody : Address Action -> List String -> List NewsItem -> Html
 newsBody uiChannel currentPhrase newsItems =
   let
     currentToken =
-      Maybe.withDefault Markov.startToken (List.head (List.reverse currentPhrase))
+      Maybe.withDefault
+        Markov.startToken
+        (List.head (List.reverse currentPhrase))
 
     graph =
       graphFromNews newsItems
