@@ -30,20 +30,39 @@ itemView item =
   div [] [ text item.title ]
 
 
-tokenButton : Address Action -> String -> Html
-tokenButton uiChannel token =
-  button
-    [ class "btn btn-info"
-    , onClick uiChannel (ChooseToken token)
-    ]
-    [ text token ]
+tokenButton : Address Action -> ( String, Int ) -> Html
+tokenButton uiChannel ( token, linkCount ) =
+  let
+    buttonType =
+      if linkCount <= 1 then
+        "btn-default"
+      else if linkCount <= 3 then
+        "btn-info"
+      else if linkCount <= 6 then
+        "btn-warning"
+      else
+        "btn-danger"
+  in
+    button
+      [ classList
+          [ ( "btn", True )
+          , ( buttonType, True )
+          ]
+      , onClick uiChannel (ChooseToken token)
+      ]
+      [ text token
+      , text " "
+      ]
 
 
-tokenButtons : Address Action -> List String -> Html
-tokenButtons uiChannel tokens =
+tokenButtons : Address Action -> List ( String, Int ) -> Html
+tokenButtons uiChannel weightedTokens =
   div
     []
-    (List.map (tokenButton uiChannel) tokens)
+    (List.map
+      (tokenButton uiChannel)
+      weightedTokens
+    )
 
 
 body : Address Action -> Model -> Html
@@ -107,6 +126,11 @@ newsBody uiChannel currentPhrase newsItems =
 
     nextTokens =
       Dict.get currentToken graph
+
+    weighToken token =
+      ( token
+      , List.length ((Set.toList (Maybe.withDefault Set.empty (Dict.get token graph))))
+      )
   in
     div
       []
@@ -121,8 +145,12 @@ newsBody uiChannel currentPhrase newsItems =
                   Nothing ->
                     div [] []
 
-                  Just ts ->
-                    tokenButtons uiChannel (Set.toList ts)
+                  Just tokens ->
+                    let
+                      weightedTokens =
+                        List.map weighToken (Set.toList tokens)
+                    in
+                      tokenButtons uiChannel weightedTokens
               ]
           , div
               [ class "col-xs-12 col-sm-2" ]
