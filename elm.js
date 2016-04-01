@@ -11194,8 +11194,10 @@ Elm.View.make = function (_elm) {
       _U.list([A2($Html.div,
               _U.list([$Html$Attributes.$class("row")]),
               _U.list([A2($Html.div,
-                      _U.list([$Html$Attributes.$class("col-xs-12 col-sm-2 well")]),
-                      _U.list([$Html.text("Click any button to choose the next word.")]))
+                      _U.list([$Html$Attributes.$class("col-xs-12 col-sm-2")]),
+                      _U.list([A2($Html.button,
+                      _U.list([$Html$Attributes.$class("btn btn-warning"),A2($Html$Events.onClick,uiChannel,$Types.Reset)]),
+                      _U.list([$Html.text("Reset!")]))]))
                       ,A2($Html.div,
                       _U.list([$Html$Attributes.$class("col-xs-12 col-sm-8")]),
                       _U.list([function () {
@@ -11208,10 +11210,8 @@ Elm.View.make = function (_elm) {
                             }
                       }()]))
                       ,A2($Html.div,
-                      _U.list([$Html$Attributes.$class("col-xs-12 col-sm-2")]),
-                      _U.list([A2($Html.button,
-                      _U.list([$Html$Attributes.$class("btn btn-warning"),A2($Html$Events.onClick,uiChannel,$Types.Reset)]),
-                      _U.list([$Html.text("Reset!")]))]))]))
+                      _U.list([$Html$Attributes.$class("col-xs-12 col-sm-2 well")]),
+                      _U.list([$Html.text("Click any button to choose the next word.")]))]))
               ,A2($Html.div,
               _U.list([$Html$Attributes.$class("row")]),
               _U.list([A2($Html.div,
