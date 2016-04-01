@@ -11126,14 +11126,12 @@ Elm.State.make = function (_elm) {
    $Types = Elm.Types.make(_elm);
    var _op = {};
    var initialPhrase = _U.list([$Markov.startToken]);
-   var effect = F2(function (action,model) {    return $Effects.none;});
    var update = F2(function (action,model) {
       var _p0 = action;
       switch (_p0.ctor)
-      {case "Reset": return _U.update(model,{phrase: initialPhrase});
-         case "LoadNews": return _U.update(model,{newsItems: $Maybe.Just(_p0._0)});
-         default: var currentPhrase = model.phrase;
-           return _U.update(model,{phrase: A2($Basics._op["++"],currentPhrase,_U.list([_p0._0]))});}
+      {case "Reset": return {ctor: "_Tuple2",_0: _U.update(model,{phrase: initialPhrase}),_1: $Effects.none};
+         case "LoadNews": return {ctor: "_Tuple2",_0: _U.update(model,{newsItems: $Maybe.Just(_p0._0)}),_1: $Effects.none};
+         default: return {ctor: "_Tuple2",_0: _U.update(model,{phrase: A2($Basics._op["++"],model.phrase,_U.list([_p0._0]))}),_1: $Effects.none};}
    });
    var graphFromNews = function (_p1) {    return $Markov.createGraph(A2($List.map,function (_) {    return _.title;},_p1));};
    var loadNewsStories = $Effects.task($Task.toResult(A2($Http.get,
@@ -11143,16 +11141,15 @@ Elm.State.make = function (_elm) {
    return _elm.State.values = {_op: _op
                               ,loadNewsStories: loadNewsStories
                               ,graphFromNews: graphFromNews
-                              ,update: update
-                              ,effect: effect
                               ,initialPhrase: initialPhrase
-                              ,initialState: initialState};
+                              ,initialState: initialState
+                              ,update: update};
 };
-Elm.UI = Elm.UI || {};
-Elm.UI.make = function (_elm) {
+Elm.View = Elm.View || {};
+Elm.View.make = function (_elm) {
    "use strict";
-   _elm.UI = _elm.UI || {};
-   if (_elm.UI.values) return _elm.UI.values;
+   _elm.View = _elm.View || {};
+   if (_elm.View.values) return _elm.View.values;
    var _U = Elm.Native.Utils.make(_elm),
    $Basics = Elm.Basics.make(_elm),
    $Debug = Elm.Debug.make(_elm),
@@ -11173,15 +11170,23 @@ Elm.UI.make = function (_elm) {
    var loading = A2($Html.div,
    _U.list([$Html$Attributes.$class("loading")]),
    _U.list([A2($Html.img,_U.list([$Html$Attributes.src("loading_wheel.gif"),$Html$Attributes.$class("loading")]),_U.list([]))]));
-   var tokenButton = F2(function (uiChannel,token) {
+   var tokenButton = F2(function (uiChannel,_p0) {
+      var _p1 = _p0;
+      var _p3 = _p1._0;
+      var _p2 = _p1._1;
+      var buttonType = _U.cmp(_p2,1) < 1 ? "btn-default" : _U.cmp(_p2,3) < 1 ? "btn-info" : _U.cmp(_p2,6) < 1 ? "btn-warning" : "btn-danger";
       return A2($Html.button,
-      _U.list([$Html$Attributes.$class("btn btn-info"),A2($Html$Events.onClick,uiChannel,$Types.ChooseToken(token))]),
-      _U.list([$Html.text(token)]));
+      _U.list([$Html$Attributes.classList(_U.list([{ctor: "_Tuple2",_0: "btn",_1: true},{ctor: "_Tuple2",_0: buttonType,_1: true}]))
+              ,A2($Html$Events.onClick,uiChannel,$Types.ChooseToken(_p3))]),
+      _U.list([$Html.text(_p3),$Html.text(" ")]));
    });
-   var tokenButtons = F2(function (uiChannel,tokens) {    return A2($Html.div,_U.list([]),A2($List.map,tokenButton(uiChannel),tokens));});
+   var tokenButtons = F2(function (uiChannel,weightedTokens) {    return A2($Html.div,_U.list([]),A2($List.map,tokenButton(uiChannel),weightedTokens));});
    var itemView = function (item) {    return A2($Html.div,_U.list([]),_U.list([$Html.text(item.title)]));};
    var newsBody = F3(function (uiChannel,currentPhrase,newsItems) {
       var graph = $State.graphFromNews(newsItems);
+      var weighToken = function (token) {
+         return {ctor: "_Tuple2",_0: token,_1: $List.length($Set.toList(A2($Maybe.withDefault,$Set.empty,A2($Dict.get,token,graph))))};
+      };
       var currentToken = A2($Maybe.withDefault,$Markov.startToken,$List.head($List.reverse(currentPhrase)));
       var nextTokens = A2($Dict.get,currentToken,graph);
       return A2($Html.div,
@@ -11194,11 +11199,12 @@ Elm.UI.make = function (_elm) {
                       ,A2($Html.div,
                       _U.list([$Html$Attributes.$class("col-xs-12 col-sm-8")]),
                       _U.list([function () {
-                         var _p0 = nextTokens;
-                         if (_p0.ctor === "Nothing") {
+                         var _p4 = nextTokens;
+                         if (_p4.ctor === "Nothing") {
                                return A2($Html.div,_U.list([]),_U.list([]));
                             } else {
-                               return A2(tokenButtons,uiChannel,$Set.toList(_p0._0));
+                               var weightedTokens = A2($List.map,weighToken,$Set.toList(_p4._0));
+                               return A2(tokenButtons,uiChannel,weightedTokens);
                             }
                       }()]))
                       ,A2($Html.div,
@@ -11234,12 +11240,12 @@ Elm.UI.make = function (_elm) {
               _U.list([$Html$Attributes.$class("col-xs-12 col-sm-8 col-sm-offset-2")]),
               _U.list([A2($Html.blockquote,_U.list([]),_U.list([A2($Html.h3,_U.list([]),_U.list([$Html.text(A2($String.join," ",model.phrase))]))]))]))]))
               ,function () {
-                 var _p1 = model.newsItems;
-                 if (_p1.ctor === "Just") {
-                       if (_p1._0.ctor === "Ok") {
-                             return A3(newsBody,uiChannel,model.phrase,_p1._0._0);
+                 var _p5 = model.newsItems;
+                 if (_p5.ctor === "Just") {
+                       if (_p5._0.ctor === "Ok") {
+                             return A3(newsBody,uiChannel,model.phrase,_p5._0._0);
                           } else {
-                             return A2($Html.div,_U.list([$Html$Attributes.$class("alert alert-danger")]),_U.list([$Html.text($Basics.toString(_p1._0._0))]));
+                             return A2($Html.div,_U.list([$Html$Attributes.$class("alert alert-danger")]),_U.list([$Html.text($Basics.toString(_p5._0._0))]));
                           }
                     } else {
                        return loading;
@@ -11253,14 +11259,14 @@ Elm.UI.make = function (_elm) {
       _U.list([$Html$Attributes.$class("row")]),
       _U.list([A2($Html.div,_U.list([$Html$Attributes.$class("col-xs-12")]),_U.list([A2(body,uiChannel,model)]))]))]));
    });
-   return _elm.UI.values = {_op: _op
-                           ,rootView: rootView
-                           ,itemView: itemView
-                           ,tokenButton: tokenButton
-                           ,tokenButtons: tokenButtons
-                           ,body: body
-                           ,newsBody: newsBody
-                           ,loading: loading};
+   return _elm.View.values = {_op: _op
+                             ,rootView: rootView
+                             ,itemView: itemView
+                             ,tokenButton: tokenButton
+                             ,tokenButtons: tokenButtons
+                             ,body: body
+                             ,newsBody: newsBody
+                             ,loading: loading};
 };
 Elm.App = Elm.App || {};
 Elm.App.make = function (_elm) {
@@ -11280,16 +11286,9 @@ Elm.App.make = function (_elm) {
    $State = Elm.State.make(_elm),
    $Task = Elm.Task.make(_elm),
    $Types = Elm.Types.make(_elm),
-   $UI = Elm.UI.make(_elm);
+   $View = Elm.View.make(_elm);
    var _op = {};
-   var app = $StartApp.start({init: $State.initialState
-                             ,view: $UI.rootView
-                             ,update: F2(function (action,model) {
-                                var newModel = A2($State.update,action,model);
-                                var newEffects = A2($State.effect,action,newModel);
-                                return {ctor: "_Tuple2",_0: newModel,_1: newEffects};
-                             })
-                             ,inputs: _U.list([])});
+   var app = $StartApp.start({init: $State.initialState,view: $View.rootView,update: $State.update,inputs: _U.list([])});
    var main = app.html;
    var tasks = Elm.Native.Task.make(_elm).performSignal("tasks",app.tasks);
    return _elm.App.values = {_op: _op,app: app,main: main};
