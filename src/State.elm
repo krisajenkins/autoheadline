@@ -47,10 +47,6 @@ update action model =
       )
 
     ChooseToken s ->
-      let
-        currentPhrase =
-          model.phrase
-      in
-        ( { model | phrase = currentPhrase ++ [ s ] }
-        , none
-        )
+      ( { model | phrase = model.phrase ++ [ s ] }
+      , none
+      )
