@@ -1,4 +1,4 @@
-module UI (..) where
+module View (..) where
 
 import String
 import State exposing (graphFromNews)

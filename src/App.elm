@@ -1,6 +1,6 @@
 module App (..) where
 
-import UI exposing (rootView)
+import View exposing (rootView)
 import Task
 import Effects exposing (Effects, Never, none)
 import StartApp exposing (App)
