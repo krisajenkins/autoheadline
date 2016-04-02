@@ -11170,18 +11170,21 @@ Elm.View.make = function (_elm) {
    var loading = A2($Html.div,
    _U.list([$Html$Attributes.$class("loading")]),
    _U.list([A2($Html.img,_U.list([$Html$Attributes.src("loading_wheel.gif"),$Html$Attributes.$class("loading")]),_U.list([]))]));
+   var showWord = function (word) {    return _U.eq(word,$Markov.startToken) ? "" : _U.eq(word,$Markov.endToken) ? "" : word;};
    var tokenButton = F2(function (uiChannel,_p0) {
       var _p1 = _p0;
       var _p3 = _p1._0;
       var _p2 = _p1._1;
       var buttonType = _U.cmp(_p2,1) < 1 ? "btn-default" : _U.cmp(_p2,3) < 1 ? "btn-info" : _U.cmp(_p2,6) < 1 ? "btn-warning" : "btn-danger";
       return A2($Html.button,
-      _U.list([$Html$Attributes.classList(_U.list([{ctor: "_Tuple2",_0: "btn",_1: true},{ctor: "_Tuple2",_0: buttonType,_1: true}]))
+      _U.list([$Html$Attributes.classList(_U.list([{ctor: "_Tuple2",_0: "token",_1: true}
+                                                  ,{ctor: "_Tuple2",_0: "btn",_1: true}
+                                                  ,{ctor: "_Tuple2",_0: buttonType,_1: true}]))
               ,A2($Html$Events.onClick,uiChannel,$Types.ChooseToken(_p3))]),
       _U.list([$Html.text(_p3),$Html.text(" ")]));
    });
    var tokenButtons = F2(function (uiChannel,weightedTokens) {    return A2($Html.div,_U.list([]),A2($List.map,tokenButton(uiChannel),weightedTokens));});
-   var itemView = function (item) {    return A2($Html.div,_U.list([]),_U.list([$Html.text(item.title)]));};
+   var itemView = function (item) {    return A2($Html.div,_U.list([$Html$Attributes.$class("real-headline")]),_U.list([$Html.text(item.title)]));};
    var newsBody = F3(function (uiChannel,currentPhrase,newsItems) {
       var graph = $State.graphFromNews(newsItems);
       var weighToken = function (token) {
@@ -11194,24 +11197,21 @@ Elm.View.make = function (_elm) {
       _U.list([A2($Html.div,
               _U.list([$Html$Attributes.$class("row")]),
               _U.list([A2($Html.div,
-                      _U.list([$Html$Attributes.$class("col-xs-12 col-sm-2")]),
-                      _U.list([A2($Html.button,
-                      _U.list([$Html$Attributes.$class("btn btn-warning"),A2($Html$Events.onClick,uiChannel,$Types.Reset)]),
-                      _U.list([$Html.text("Reset!")]))]))
+                      _U.list([$Html$Attributes.$class("col-xs-12 col-sm-2 well")]),
+                      _U.list([$Html.text("Click any button to choose the next word.")]))
                       ,A2($Html.div,
                       _U.list([$Html$Attributes.$class("col-xs-12 col-sm-8")]),
                       _U.list([function () {
                          var _p4 = nextTokens;
                          if (_p4.ctor === "Nothing") {
-                               return A2($Html.div,_U.list([]),_U.list([]));
+                               return A2($Html.button,
+                               _U.list([$Html$Attributes.$class("btn btn-warning reset"),A2($Html$Events.onClick,uiChannel,$Types.Reset)]),
+                               _U.list([$Html.text("Reset!")]));
                             } else {
                                var weightedTokens = A2($List.map,weighToken,$Set.toList(_p4._0));
                                return A2(tokenButtons,uiChannel,weightedTokens);
                             }
-                      }()]))
-                      ,A2($Html.div,
-                      _U.list([$Html$Attributes.$class("col-xs-12 col-sm-2 well")]),
-                      _U.list([$Html.text("Click any button to choose the next word.")]))]))
+                      }()]))]))
               ,A2($Html.div,
               _U.list([$Html$Attributes.$class("row")]),
               _U.list([A2($Html.div,
@@ -11225,8 +11225,8 @@ Elm.View.make = function (_elm) {
               _U.list([$Html$Attributes.$class("row")]),
               _U.list([A2($Html.div,
                       _U.list([$Html$Attributes.$class("col-xs-12 col-sm-8 col-sm-offset-2")]),
-                      _U.list([A2($Html.h1,_U.list([]),_U.list([$Html.text("Make Your Own HackerNews Headline")]))
-                              ,A2($Html.h2,_U.list([]),_U.list([$Html.text(" from the latest 200 stories.")]))]))
+                      _U.list([A2($Html.h2,_U.list([]),_U.list([$Html.text("Make Your Own HackerNews Headline")]))
+                              ,A2($Html.h3,_U.list([]),_U.list([$Html.text(" from the latest 200 stories.")]))]))
                       ,A2($Html.div,
                       _U.list([$Html$Attributes.$class("col-xs-12 col-sm-2")]),
                       _U.list([A2($Html.h4,
@@ -11240,7 +11240,7 @@ Elm.View.make = function (_elm) {
               _U.list([$Html$Attributes.$class("col-xs-12 col-sm-8 col-sm-offset-2")]),
               _U.list([A2($Html.div,
               _U.list([$Html$Attributes.$class("well")]),
-              _U.list([A2($Html.h3,_U.list([]),_U.list([$Html.text(A2($String.join," ",model.phrase))]))]))]))]))
+              _U.list([A2($Html.h1,_U.list([]),_U.list([$Html.text(A2($String.join," ",A2($List.map,showWord,model.phrase)))]))]))]))]))
               ,function () {
                  var _p5 = model.newsItems;
                  if (_p5.ctor === "Just") {
@@ -11266,6 +11266,7 @@ Elm.View.make = function (_elm) {
                              ,itemView: itemView
                              ,tokenButton: tokenButton
                              ,tokenButtons: tokenButtons
+                             ,showWord: showWord
                              ,body: body
                              ,newsBody: newsBody
                              ,loading: loading};
