@@ -27,7 +27,9 @@ rootView uiChannel model =
 
 itemView : NewsItem -> Html
 itemView item =
-  div [] [ text item.title ]
+  div
+    [ class "real-headline" ]
+    [ text item.title ]
 
 
 tokenButton : Address Action -> ( String, Int ) -> Html
@@ -45,7 +47,8 @@ tokenButton uiChannel ( token, linkCount ) =
   in
     button
       [ classList
-          [ ( "btn", True )
+          [ ( "token", True )
+          , ( "btn", True )
           , ( buttonType, True )
           ]
       , onClick uiChannel (ChooseToken token)
@@ -83,10 +86,10 @@ body uiChannel model =
         [ class "row" ]
         [ div
             [ class "col-xs-12 col-sm-8 col-sm-offset-2" ]
-            [ h1
+            [ h2
                 []
                 [ text "Make Your Own HackerNews Headline" ]
-            , h2
+            , h3
                 []
                 [ text " from the latest 200 stories." ]
             ]
