@@ -65,6 +65,16 @@ tokenButtons uiChannel weightedTokens =
     )
 
 
+showWord : String -> String
+showWord word =
+  if word == Markov.startToken then
+    ""
+  else if word == Markov.endToken then
+    ""
+  else
+    word
+
+
 body : Address Action -> Model -> Html
 body uiChannel model =
   div
@@ -96,7 +106,7 @@ body uiChannel model =
             [ class "col-xs-12 col-sm-8 col-sm-offset-2" ]
             [ div
                 [ class "well" ]
-                [ h3 [] [ text <| String.join " " model.phrase ] ]
+                [ h1 [] [ text <| String.join " " <| List.map showWord model.phrase ] ]
             ]
         ]
     , case model.newsItems of
