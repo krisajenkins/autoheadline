@@ -147,18 +147,17 @@ newsBody uiChannel currentPhrase newsItems =
       [ div
           [ class "row" ]
           [ div
-              [ class "col-xs-12 col-sm-2" ]
-              [ button
-                  [ class "btn btn-warning"
-                  , onClick uiChannel Reset
-                  ]
-                  [ text "Reset!" ]
-              ]
+              [ class "col-xs-12 col-sm-2 well" ]
+              [ text "Click any button to choose the next word." ]
           , div
               [ class "col-xs-12 col-sm-8" ]
               [ case nextTokens of
                   Nothing ->
-                    div [] []
+                    button
+                      [ class "btn btn-warning reset"
+                      , onClick uiChannel Reset
+                      ]
+                      [ text "Reset!" ]
 
                   Just tokens ->
                     let
@@ -167,9 +166,6 @@ newsBody uiChannel currentPhrase newsItems =
                     in
                       tokenButtons uiChannel weightedTokens
               ]
-          , div
-              [ class "col-xs-12 col-sm-2 well" ]
-              [ text "Click any button to choose the next word." ]
           ]
       , div
           [ class "row" ]
