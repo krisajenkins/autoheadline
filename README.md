@@ -15,17 +15,9 @@ directory and the files are built into `dist/`.
 
 Generic app wiring. This file will probably look about the same in every Elm app you'll write.
 
-`src/Markov.elm`
-
-A library for making Markov chains.
-
-`src/Rest.elm`
-
-Everything to do with REST & JSON.
-
 `src/Types.elm`
 
-The datatypes the define our app, and some (pure) functions for manipulating them.
+The datatypes that define our app, and some (pure) functions for manipulating them.
 
 `src/State.elm`
 
@@ -34,3 +26,11 @@ App starting state `(Model, Effects Action)`, and the `Action` handlers.
 `src/View.elm`
 
 Rendering functions.
+
+`src/Markov.elm`
+
+A library for making Markov chains.
+
+`src/Rest.elm`
+
+Everything to do with REST & JSON.
