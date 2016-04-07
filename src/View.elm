@@ -1,7 +1,6 @@
 module View (..) where
 
 import String
-import State exposing (graphFromNews)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)

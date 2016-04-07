@@ -1,26 +1,16 @@
 module Types (..) where
 
 import Http exposing (Error)
-import Json.Decode exposing (..)
-import Markov exposing (Graph, Sentence)
+import Markov exposing (Graph, Sentence, createGraph)
 
 
 type alias NewsItem =
   { title : String }
 
 
-decodeNewsItem : Decoder NewsItem
-decodeNewsItem =
-  object1
-    NewsItem
-    ("title" := string)
-
-
-decodeNewsItems : Decoder (List NewsItem)
-decodeNewsItems =
-  at
-    [ "hits" ]
-    (list decodeNewsItem)
+graphFromNews : List NewsItem -> Graph
+graphFromNews =
+  List.map .title >> createGraph
 
 
 type alias Model =
