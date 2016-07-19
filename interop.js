@@ -3,7 +3,7 @@
 window.addEventListener(
     'load',
     function () {
-        var app = Elm.fullscreen(Elm.App, {});
+        var app = Elm.App.fullscreen();
     },
     false
 );
