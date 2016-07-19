@@ -1,6 +1,8 @@
 module View exposing (..)
 
 import Dict
+import Document
+import Exts.Http exposing (cgiParameters)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
@@ -90,7 +92,7 @@ body model =
         , div [ class "row" ]
             [ div [ class "col-xs-12 col-sm-8 col-sm-offset-2" ]
                 [ div [ class "well" ]
-                    [ h1 [] [ text <| String.join " " <| List.map showWord model.phrase ] ]
+                    [ h1 [] [ text <| formattedPhrase model.phrase ] ]
                 ]
             ]
         , case model.newsItems of
@@ -104,6 +106,13 @@ body model =
             _ ->
                 loading
         ]
+
+
+formattedPhrase : List String -> String
+formattedPhrase =
+    List.map showWord
+        >> String.join " "
+        >> String.trim
 
 
 newsBody : List String -> List NewsItem -> Html Msg
@@ -131,11 +140,19 @@ newsBody currentPhrase newsItems =
                 , div [ class "col-xs-12 col-sm-8" ]
                     [ case nextTokens of
                         Nothing ->
-                            button
-                                [ class "btn btn-warning reset"
-                                , onClick Reset
+                            div [ class "btn-group" ]
+                                [ button
+                                    [ class "btn btn-warning reset"
+                                    , onClick Reset
+                                    ]
+                                    [ text "Reset" ]
+                                , a
+                                    [ class "btn btn-success"
+                                    , target "_blank"
+                                    , href <| shareLink <| formattedPhrase currentPhrase
+                                    ]
+                                    [ text "Tweet This" ]
                                 ]
-                                [ text "Reset!" ]
 
                         Just tokens ->
                             let
@@ -161,3 +178,14 @@ loading =
             ]
             []
         ]
+
+
+shareLink : String -> String
+shareLink body =
+    "https://twitter.com/intent/tweet?"
+        ++ (cgiParameters
+                [ ( "url", Document.locationHref () )
+                , ( "via", "krisajenkins" )
+                , ( "text", "\"" ++ body ++ "\"\n\n" )
+                ]
+           )
