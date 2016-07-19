@@ -1,25 +1,25 @@
-module Types (..) where
+module Types exposing (..)
 
 import Http exposing (Error)
-import Markov exposing (Graph, Sentence, createGraph)
+import Markov exposing (..)
 
 
 type alias NewsItem =
-  { title : String }
+    { title : String }
 
 
-graphFromNews : List NewsItem -> Graph
+graphFromNews : List NewsItem -> Graph String
 graphFromNews =
-  List.map .title >> createGraph
+    List.map .title >> createGraph
 
 
 type alias Model =
-  { newsItems : Maybe (Result Error (List NewsItem))
-  , phrase : Sentence
-  }
+    { newsItems : Maybe (Result Error (List NewsItem))
+    , phrase : List Token
+    }
 
 
-type Action
-  = LoadNews (Result Error (List NewsItem))
-  | ChooseToken String
-  | Reset
+type Msg
+    = LoadNews (Result Error (List NewsItem))
+    | ChooseToken String
+    | Reset

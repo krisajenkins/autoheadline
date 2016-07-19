@@ -1,29 +1,15 @@
-module App (..) where
+module App exposing (..)
 
-import View exposing (rootView)
-import Task exposing (Task)
-import Effects exposing (Effects, Never, none)
-import StartApp exposing (App)
-import Types exposing (Model)
-import Html exposing (Html)
-import State exposing (initialState, update)
+import Html.App
+import State
+import View
 
 
-app : App Model
-app =
-  StartApp.start
-    { init = initialState
-    , view = rootView
-    , update = update
-    , inputs = []
-    }
-
-
-main : Signal Html
+main : Program Never
 main =
-  app.html
-
-
-port tasks : Signal (Task Never ())
-port tasks =
-  app.tasks
+    Html.App.program
+        { init = State.initialState
+        , update = State.update
+        , subscriptions = State.subscriptions
+        , view = View.rootView
+        }
